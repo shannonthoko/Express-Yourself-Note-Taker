@@ -1,17 +1,25 @@
 // Dependencies
 
-var express = require("express");
-var path = require("path");
+const express = require("express");
+//shipped module
+const path = require("path");
+
+var notes = [
+
+ 
+];
 
 // Sets up the Express App
 
-var app = express();
-var PORT = 3000;
+const app = express();
+const PORT = 3000;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
+//routes
 app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
   });
@@ -23,9 +31,24 @@ app.get("/", function(req, res) {
 
 
 
+  //api routes
+
+  app.get("/api/notes", function(req, res) {
+    return res.json(notes);
+  
+  });
 
 
+  app.post("/api/notes", function(req, res) {
 
+    let newNote = req.body;
+    console.log(newNote);
+    notes.push(newNote);
+    res.json(newNote);
+  });
+
+
+//DELETE
 
 
 
@@ -36,4 +59,3 @@ app.listen(PORT, function() {
   });
 
 
-  
