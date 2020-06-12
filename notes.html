@@ -71,7 +71,9 @@
             $.get("/api/notes/", function(data) {
             console.log(data); 
               if (data) {
-                $("#output").prepend(noteInput);
+                let newDiv = $("<div>")
+                newDiv.prepend(noteInput)
+                $("#output").prepend(newDiv);
               } else {
              
               }
